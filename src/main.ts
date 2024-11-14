@@ -14,7 +14,7 @@ async function run(): Promise<void> {
       const envValue = process.env[key] ?? ''
 
       if (envValue === '' && core.getInput('fail_on_empty') === 'true') {
-        throw new Error(`La clave de entorno ${envKey} está vacía.`)
+        throw new Error(`The environment key ${envKey} is empty.`)
       }
 
       envVars[envKey] = envValue
@@ -29,12 +29,12 @@ async function run(): Promise<void> {
     const easJson = JSON.parse(fs.readFileSync(easJsonPath, 'utf8'))
 
     if (easJson == null) {
-      throw new Error("No se pudo encontrar el archivo 'eas.json'")
+      throw new Error("Could not find the 'eas.json' file.")
     }
 
     const profileName = core.getInput('profile_name')
     if (easJson.build?.[profileName] == null) {
-      throw new Error(`Perfil '${profileName}' no encontrado  en eas.json.`)
+      throw new Error(`Profile '${profileName}' not found in eas.json.`)
     }
 
     easJson.build[profileName].env = {
@@ -55,7 +55,7 @@ async function run(): Promise<void> {
 
     fs.writeFileSync(easJsonPath, JSON.stringify(easJson, null, 2))
     core.info(
-      `Variables de entorno inyectadas correctamente en el perfil '${profileName}' en ${easJsonPath}`
+      `Environment variables successfully injected into the profile '${profileName}' in ${easJsonPath}`
     )
     const updatedEasJson = fs.readFileSync(easJsonPath, 'utf8')
     core.info(`Updated eas.json content:\n${updatedEasJson}`)
