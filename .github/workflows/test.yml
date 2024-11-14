@@ -1,0 +1,23 @@
+name: Test EAS Inject Env Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run EAS Inject Env
+        uses: ./ # Utiliza la Action local del repositorio
+        with:
+          profile_name: production
+          operation_type: build
+          envkey_DEBUG: false
+          envkey_SOME_API_KEY: "123456abcdef"
+          fail_on_empty: true
+          sort_keys: true

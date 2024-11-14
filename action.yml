@@ -1,0 +1,14 @@
+name: "EAS Inject Env Action"
+description: "GitHub Action to inject environment variables into EAS configuration"
+runs:
+  using: "node16"
+  main: "dist/index.js"
+inputs:
+  profile_name:
+    description: "The profile to update (e.g., build, update)"
+    required: true
+  operation_type:
+    description: "Operation type: build, update"
+    required: false
+    default: "build"
+  # Agrega los demás inputs necesarios

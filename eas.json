@@ -1,0 +1,17 @@
+{
+  "build": {
+    "production": {
+      "env": {
+        "EXISTING_ENV_KEY": "existing_value"
+      }
+    },
+    "development": {
+      "env": {}
+    }
+  },
+  "update": {
+    "default": {
+      "env": {}
+    }
+  }
+}
