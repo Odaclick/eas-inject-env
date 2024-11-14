@@ -5,12 +5,8 @@ runs:
   main: "dist/index.js"
 inputs:
   profile_name:
-    description: "The profile to update (e.g., build, update)"
+    description: "The profile to update (e.g., production, test)"
     required: true
-  operation_type:
-    description: "Operation type: build, update"
-    required: false
-    default: "build"
   directory:
     description: 'The directory where to find eas.json'
     default: ''
