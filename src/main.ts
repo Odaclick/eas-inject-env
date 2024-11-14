@@ -34,7 +34,7 @@ async function run(): Promise<void> {
     }
 
     const profileName = core.getInput('profile_name')
-    if (easJson[operationType]?.[profileName] != null) {
+    if (easJson[operationType]?.[profileName] == null) {
       throw new Error(
         `Perfil '${profileName}' no encontrado en el entorno de operación '${operationType}' en eas.json.`
       )
