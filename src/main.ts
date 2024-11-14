@@ -26,7 +26,6 @@ async function run(): Promise<void> {
       directory,
       'eas.json'
     )
-    core.info(`Archivo eas.json encontrado en: ${easJsonPath}`)
     const easJson = JSON.parse(fs.readFileSync(easJsonPath, 'utf8'))
     const operationType = core.getInput('operation_type') ?? 'build'
 

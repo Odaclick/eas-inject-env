@@ -35,10 +35,10 @@ const fs = __importStar(__nccwpck_require__(7147));
 const path = __importStar(__nccwpck_require__(1017));
 async function run() {
     try {
-        const envKeys = Object.keys(process.env).filter(key => key.startsWith('INPUT_ENVKEY_'));
+        const envKeys = Object.keys(process.env).filter(key => key.startsWith('INPUT_EXPO_PUBLIC_'));
         const envVars = {};
         for (const key of envKeys) {
-            const envKey = key.split('INPUT_ENVKEY_')[1];
+            const envKey = key.split('INPUT_EXPO_PUBLIC_')[1];
             const envValue = process.env[key] ?? '';
             if (envValue === '' && core.getInput('fail_on_empty') === 'true') {
                 throw new Error(`La clave de entorno ${envKey} está vacía.`);
@@ -47,7 +47,6 @@ async function run() {
         }
         const directory = core.getInput('directory') ?? '';
         const easJsonPath = path.join(process.env.GITHUB_WORKSPACE ?? '.', directory, 'eas.json');
-        core.info(`Archivo eas.json encontrado en: ${easJsonPath}`);
         const easJson = JSON.parse(fs.readFileSync(easJsonPath, 'utf8'));
         const operationType = core.getInput('operation_type') ?? 'build';
         if (easJson == null) {
