@@ -1,7 +1,7 @@
 name: "EAS Inject Env Action"
 description: "GitHub Action to inject environment variables into EAS configuration"
 runs:
-  using: "node16"
+  using: "node18"
   main: "dist/index.js"
 inputs:
   profile_name:
